@@ -8,7 +8,11 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
@@ -16,15 +20,17 @@ public class TasksTest {
 
     Faker faker = new Faker(new Locale("pt-BR"));
 
-    public WebDriver setup() {
-        WebDriver driver = new ChromeDriver();
-        driver.navigate().to("http://localhost:8001/tasks/");
+    public WebDriver setup() throws MalformedURLException {
+//        WebDriver driver = new ChromeDriver();
+        DesiredCapabilities cap = DesiredCapabilities.chrome();
+        WebDriver driver = new RemoteWebDriver(new URL("http://192.168.15.13:4444/wd/hub"), cap);
+        driver.navigate().to("http://192.168.15.13:8001/tasks");
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         return driver;
     }
 
     @Test
-    public void deveSalvarTarefaComSucesso() throws Exception {
+    public void deveSalvarTarefaComSucesso() throws MalformedURLException {
         WebDriver driver = setup();
         try {
             //clicar em add todo
@@ -49,7 +55,7 @@ public class TasksTest {
     }
 
     @Test
-    public void naoDeveSalvarTarefaComDataPassada() throws Exception {
+    public void naoDeveSalvarTarefaComDataPassada() throws MalformedURLException {
         WebDriver driver = setup();
         try {
             //clicar em add todo
@@ -74,7 +80,7 @@ public class TasksTest {
     }
 
     @Test
-    public void naoDeveSalvarTarefaSemDescicao() throws Exception {
+    public void naoDeveSalvarTarefaSemDescicao() throws MalformedURLException {
         WebDriver driver = setup();
         try {
             //clicar em add todo
@@ -96,7 +102,7 @@ public class TasksTest {
     }
 
     @Test
-    public void naoDeveSalvarSemData() throws Exception {
+    public void naoDeveSalvarSemData() throws MalformedURLException {
         WebDriver driver = setup();
 
         try {
