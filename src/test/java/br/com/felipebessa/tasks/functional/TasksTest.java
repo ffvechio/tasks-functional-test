@@ -33,19 +33,19 @@ public class TasksTest {
     public void deveSalvarTarefaComSucesso() throws MalformedURLException {
         WebDriver driver = setup();
         try {
-            //clicar em add todo
+            //clica no botão Add Todo
             driver.findElement(By.id("addTodo")).click();
 
-            //escrever descrição
+            //escreve descrição
             driver.findElement(By.id("task")).sendKeys(faker.name().fullName() + " " + faker.number().digit());
 
-            //escrever data
+            //escreve data
             driver.findElement(By.id("dueDate")).sendKeys("10/10/2020");
 
-            //clicar em salvar
+            //clica no botão salvar
             driver.findElement(By.id("saveButton")).click();
 
-            //validar nebsagen de sucesso
+            //valida mensagem de sucesso
             String message = driver.findElement(By.id("message")).getText();
             Assert.assertEquals("Success!", message);
         } finally {
@@ -58,19 +58,19 @@ public class TasksTest {
     public void naoDeveSalvarTarefaComDataPassada() throws MalformedURLException {
         WebDriver driver = setup();
         try {
-            //clicar em add todo
+            //clica no botão Add Todo
             driver.findElement(By.id("addTodo")).click();
 
-            //escrever descrição
+            //escreve descrição
             driver.findElement(By.id("task")).sendKeys(faker.name().fullName() + " " + faker.number().digit());
 
-            //escrever data
+            //escreve data
             driver.findElement(By.id("dueDate")).sendKeys("10/10/2010");
 
-            //clicar em salvar
+            //clica no botão salvar
             driver.findElement(By.id("saveButton")).click();
 
-            //validar nebsagen de sucesso
+            //valida mensagem de sucesso
             String message = driver.findElement(By.id("message")).getText();
             Assert.assertEquals("Due date must not be in past", message);
         } finally {
@@ -83,16 +83,16 @@ public class TasksTest {
     public void naoDeveSalvarTarefaSemDescicao() throws MalformedURLException {
         WebDriver driver = setup();
         try {
-            //clicar em add todo
+            //clica no botão Add Todo
             driver.findElement(By.id("addTodo")).click();
 
-            //escrever data
+            //escreve data
             driver.findElement(By.id("dueDate")).sendKeys("10/10/2020");
 
-            //clicar em salvar
+            //clica no botão salvar
             driver.findElement(By.id("saveButton")).click();
 
-            //validar nebsagen de sucesso
+            //valida mensagem de sucesso
             String message = driver.findElement(By.id("message")).getText();
             Assert.assertEquals("Fill the task description", message);
         } finally {
@@ -106,17 +106,16 @@ public class TasksTest {
         WebDriver driver = setup();
 
         try {
-            //clicar em add todo
+            //clica no botão Add Todo
             driver.findElement(By.id("addTodo")).click();
 
-            //escrever descrição
+            //escreve descrição
             driver.findElement(By.id("task")).sendKeys(faker.name().fullName() + " " + faker.number().digit());
 
-            //clicar em salvar
+            //clica no botão salvar
             driver.findElement(By.id("saveButton")).click();
 
-            //validar nebsagen de sucesso
-            Thread.sleep(5000);
+            //valida mensagem de sucesso
             String message = driver.findElement(By.id("message")).getText();
             Assert.assertEquals("Fill the due date", message);
         } finally {
