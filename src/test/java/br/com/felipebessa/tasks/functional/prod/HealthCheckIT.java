@@ -18,11 +18,11 @@ public class HealthCheckIT {
     public void healthCheck() throws MalformedURLException, Exception {
         WebDriver driver = new ChromeDriver();
 //        DesiredCapabilities cap = DesiredCapabilities.chrome();
-//        WebDriver driver = new RemoteWebDriver(new URL("http://192.168.15.13:4444/wd/hub"), cap);
+//        WebDriver driver = new RemoteWebDriver(new URL("http://192.168.15.21:4444/wd/hub"), cap);
         driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
 
         try {
-            driver.navigate().to("http://192.168.15.13:9999/tasks");
+            driver.navigate().to("http://192.168.15.21:9999/tasks");
 
             //valida se aplicação está up
             String message = driver.findElement(By.id("version")).getText();
