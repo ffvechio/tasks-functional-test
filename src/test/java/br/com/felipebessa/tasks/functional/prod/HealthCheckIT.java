@@ -22,7 +22,7 @@ public class HealthCheckIT {
         driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
 
         try {
-            driver.navigate().to("http://192.168.15.21:9999/tasks");
+            driver.navigate().to("http://localhost:9999/tasks");
 
             //valida se aplicação está up
             String message = driver.findElement(By.id("version")).getText();
